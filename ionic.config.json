@@ -1,0 +1,7 @@
+{
+  "name": "ecoScan",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
