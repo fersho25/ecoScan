@@ -1,17 +1,47 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab 1
+      EcoScan
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">EcoScan</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="dashboard-container">
+    <ion-card class="action-card" (click)="scanQrCode()" button>
+      <ion-card-header>
+        <ion-icon name="qr-code-outline" size="large" color="success"></ion-icon>
+        <ion-card-title>Escanear QR</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Registra un producto reciclado o un lugar ecológico.
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="action-card" (click)="takePicture()" button>
+      <ion-card-header>
+        <ion-icon name="camera-outline" size="large" color="tertiary"></ion-icon>
+        <ion-card-title>Tomar Foto</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Captura una foto de tu buena acción o material para reciclar.
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="action-card" (click)="recordLocation()" button>
+      <ion-card-header>
+        <ion-icon name="location-outline" size="large" color="warning"></ion-icon>
+        <ion-card-title>Registrar Ubicación</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Guarda tu ubicación actual como punto de acción ecológica.
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

@@ -1,0 +1,37 @@
+.log-card {
+    margin-bottom: 16px;
+}
+
+.log-icon {
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.qr-data {
+    font-family: monospace;
+    font-size: 0.9em;
+    word-break: break-all;
+}
+
+.log-footer {
+    text-align: right;
+    font-size: 0.8em;
+    color: var(--ion-color-medium);
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: var(--ion-color-medium);
+    text-align: center;
+    padding: 20px;
+}
+
+.empty-state ion-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+    color: var(--ion-color-success);
+}

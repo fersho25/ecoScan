@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab 2
+      Historial de Actividades
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,61 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Historial</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-list *ngIf="logs.length > 0; else noLogs">
+    <ion-card *ngFor="let log of logs" class="log-card">
+      <div [ngSwitch]="log.type">
+
+        <!-- Plantilla para Fotos -->
+        <div *ngSwitchCase="'photo'">
+          <img [src]="getPhoto(log.imageData)" *ngIf="log.imageData" />
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-icon name="camera" class="log-icon"></ion-icon> Foto Registrada
+            </ion-card-subtitle>
+            <ion-card-title>{{ log.description }}</ion-card-title>
+          </ion-card-header>
+        </div>
+
+        <!-- Plantilla para QR -->
+        <div *ngSwitchCase="'qr'">
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-icon name="qr-code" class="log-icon"></ion-icon> Código QR Escaneado
+            </ion-card-subtitle>
+            <ion-card-title class="qr-data">{{ log.qrData }}</ion-card-title>
+          </ion-card-header>
+        </div>
+
+        <!-- Plantilla para Ubicación -->
+        <div *ngSwitchCase="'location'">
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-icon name="location" class="log-icon"></ion-icon> Ubicación Registrada
+            </ion-card-subtitle>
+            <ion-card-title>
+              Lat: {{ log.locationData?.latitude.toFixed(4) }},
+              Lon: {{ log.locationData?.longitude.toFixed(4) }}
+            </ion-card-title>
+          </ion-card-header>
+        </div>
+      </div>
+
+      <ion-card-content class="log-footer">
+        {{ log.timestamp | date:'medium' }}
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <!-- Mensaje si no hay registros -->
+  <ng-template #noLogs>
+    <div class="empty-state">
+      <ion-icon name="leaf-outline" size="large"></ion-icon>
+      <p>Aún no has registrado ninguna actividad.</p>
+      <p>¡Empieza a escanear y tomar fotos!</p>
+    </div>
+  </ng-template>
 </ion-content>
