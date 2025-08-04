@@ -44,9 +44,10 @@
             <ion-card-subtitle>
               <ion-icon name="location" class="log-icon"></ion-icon> Ubicación Registrada
             </ion-card-subtitle>
-            <ion-card-title>
-              Lat: {{ log.locationData?.latitude.toFixed(4) }},
-              Lon: {{ log.locationData?.longitude.toFixed(4) }}
+            <!-- CORRECCIÓN: Usar *ngIf para asegurar que locationData existe -->
+            <ion-card-title *ngIf="log.locationData">
+              Lat: {{ log.locationData.latitude.toFixed(4) }},
+              Lon: {{ log.locationData.longitude.toFixed(4) }}
             </ion-card-title>
           </ion-card-header>
         </div>

@@ -6,6 +6,7 @@ import { Haptics } from '@capacitor/haptics';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { StorageService } from '../services/storage.service';
 import { EcoLog } from '../models/eco-log.interface';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-tab1',
@@ -13,7 +14,8 @@ import { EcoLog } from '../models/eco-log.interface';
   styleUrls: ['tab1.page.scss'],
   standalone: true,
   imports: [
-    // ... otros imports de Ionic
+    IonHeader, IonToolbar, IonTitle, IonContent, IonCard,
+    IonCardHeader, IonCardTitle, IonCardContent, IonIcon
   ]
 })
 export class Tab1Page {

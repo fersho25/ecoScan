@@ -1,22 +1,29 @@
 import { Component } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { StorageService } from '../services/storage.service';
 import { EcoLog } from '../models/eco-log.interface';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonIcon } from '@ionic/angular/standalone';
+import { NgIf, NgFor, NgSwitch, NgSwitchCase, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  styleUrls: ['tab2.page.scss'],
+  standalone: true,
+  imports: [
+    IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonCard,
+    IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonIcon,
+    NgIf, NgFor, NgSwitch, NgSwitchCase, DatePipe
+  ]
 })
 export class Tab2Page {
   public logs: EcoLog[] = [];
 
   constructor(
     private storageService: StorageService,
-    private sanitizer: DomSanitizer // Para las rutas de las imágenes
+    private sanitizer: DomSanitizer
   ) { }
 
-  // ionViewWillEnter se ejecuta cada vez que la página está a punto de mostrarse
   ionViewWillEnter() {
     this.loadLogs();
   }
@@ -25,7 +32,6 @@ export class Tab2Page {
     this.logs = await this.storageService.getLogs();
   }
 
-  // Función para obtener una URL segura para las imágenes de la cámara
   getPhoto(path: string | undefined): SafeResourceUrl | string {
     return path ? this.sanitizer.bypassSecurityTrustResourceUrl(path) : '';
   }
